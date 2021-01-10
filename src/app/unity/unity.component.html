@@ -1,13 +1,5 @@
 <ng-container *ngIf="!isReady">
-    <div class="progress">
-      <div class="progress-bar" 
-           role="progressbar" 
-           [style.width.%]="progress*100" 
-           [attr.aria-valuenow]="progress*100" 
-           aria-valuemin="0" 
-           aria-valuemax="100"></div>
-    </div>
-    <p>Cargando...</p><p>{{ progress*100 }}</p>
+    <p>Cargando... {{ progress*100 }}%</p>
     <hr />
   </ng-container>
   
