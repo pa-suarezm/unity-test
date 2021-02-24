@@ -12,6 +12,7 @@ export class UnityComponent implements OnInit {
   isReady = false;
 
   examenFisico = "";
+  imgUrl = "https://i.imgur.com/Z1mAEjG.png";
 
   constructor() { }
 
@@ -20,6 +21,10 @@ export class UnityComponent implements OnInit {
 
     (window as any).examenFisicoChangeListener = (examenFisico: string) => {
       this.examenFisico = examenFisico;
+    }
+
+    (window as any).setFirebaseImgURL = (imgUrl: string) => {
+      this.imgUrl = imgUrl;
     }
 
     this.gameInstance = loader.instantiate(

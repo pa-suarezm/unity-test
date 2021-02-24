@@ -10,6 +10,31 @@
     </script>
   </head>
   <body>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-analytics.js"></script>
+
+    <script>
+      // Your web app's Firebase configuration
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      var firebaseConfig = {
+        apiKey: "AIzaSyBaEWla7NUcrfFIgW61DWCFhSSZZXU54E8",
+        authDomain: "medicina-uniandes.firebaseapp.com",
+        databaseURL: "https://medicina-uniandes-default-rtdb.firebaseio.com",
+        projectId: "medicina-uniandes",
+        storageBucket: "medicina-uniandes.appspot.com",
+        messagingSenderId: "370430901065",
+        appId: "1:370430901065:web:c41be8a16696795ea87898",
+        measurementId: "G-NFST5TX96T"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      firebase.analytics();
+    </script>
+
     <div id="unityContainer" style="width: 1920px; height: 960px; margin: auto"></div>
   </body>
 </html>
