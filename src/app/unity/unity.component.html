@@ -1,11 +1,13 @@
 <ng-container *ngIf="!isReady">
     <p>Cargando... {{ progress*100 }}%</p>
-    <p>v0.3.33 - Actualizado 24-feb-2021 4:45pm</p>
+    <p>v0.3.35 - Actualizado 24-feb-2021 6:45pm</p>
 </ng-container>
   
 <div #unityEl id="gameContainer" 
       style="display: block; max-width: 75%; max-height: 75%; margin: auto">
 </div>
 
-<p>{{ examenFisico }}</p>
-<img [src]="imgUrl" style="display: block; max-width: 10%; max-height: 10%; margin: auto">
+<ng-container *ngIf="mostrarExamenFisico">
+    <p>{{ examenFisico }}</p>
+    <img [src]="imgUrl" style="display: block; max-width: 20%; max-height: 20%; margin: auto">
+</ng-container>

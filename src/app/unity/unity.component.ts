@@ -14,43 +14,38 @@ export class UnityComponent implements OnInit {
   progress = 0;
   isReady = false;
 
+  mostrarExamenFisico = false;
   examenFisico = "";
-  imgUrl = "https://i.imgur.com/Z1mAEjG.png";
-
-  
+  imgUrl = "";
 
   constructor(private afStorage: AngularFireStorage) { }
 
   ngOnInit(): void {
     const loader = (window as any).UnityLoader;
-
+    
+    //Se expone esta función a Unity
     (window as any).examenFisicoChangeListener = (examenFisico: string) => {
       this.examenFisico = examenFisico;
     }
 
+    //Se expone esta función a Unity
     (window as any).setFirebaseImgURL = (imgUrl: string) => {
-      const observer = {
-        next: completion => console.log('Observer got a next value: ' + completion),
-        error: err => console.log('Observer got an error: ' + err),
-        complete: () => console.log('Observer got a complete notification')
-      };
-
-      var downloadSub= this.afStorage.ref(imgUrl).getDownloadURL()
+      var finalUrl;
+      this.mostrarExamenFisico = false;
+      this.afStorage.ref(imgUrl).getDownloadURL()
       .subscribe(
-        completion => {
-          console.log('Observer got a next value: ' + completion)
-          this.imgUrl = completion;
-        },
+        downloadUrl => finalUrl = downloadUrl,
         err => console.log('Observer got an error: ' + err),
         () => {
-          console.log('Observer got a complete notification');
+          this.imgUrl = finalUrl;
+          this.mostrarExamenFisico = true;
         }
       );
-
-      
     }
 
-    
+    (window as any).quitarImagen = () => {
+      this.mostrarExamenFisico = false;
+    }
 
     this.gameInstance = loader.instantiate(
     'gameContainer', 
