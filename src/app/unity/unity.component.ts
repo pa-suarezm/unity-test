@@ -11,10 +11,16 @@ export class UnityComponent implements OnInit {
   progress = 0;
   isReady = false;
 
+  examenFisico = "";
+
   constructor() { }
 
   ngOnInit(): void {
     const loader = (window as any).UnityLoader;
+
+    (window as any).examenFisicoChangeListener = (examenFisico: string) => {
+      this.examenFisico = examenFisico;
+    }
 
     this.gameInstance = loader.instantiate(
     'gameContainer', 
