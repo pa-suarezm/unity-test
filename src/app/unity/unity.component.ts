@@ -50,7 +50,7 @@ export class UnityComponent implements OnInit {
         () => {
           this.imgUrl = finalUrl;
           this.mostrarExamenFisico = true;
-          this.gameInstance.SendMessage('Panel_audiovisuales', 'renderImgDesdeUrl', imgUrl);
+          this.gameInstance.SendMessage('Panel_audiovisuales', 'renderImgDesdeUrl', this.imgUrl);
         }
       );
     }
