@@ -22,7 +22,18 @@ export class UnityComponent implements OnInit {
 
   ngOnInit(): void {
     const loader = (window as any).UnityLoader;
-    
+
+    this.gameInstance = loader.instantiate(
+      'gameContainer', 
+      '/assets/Build/Builds.json', {
+      onProgress: (gameInstance: any, progress: number) => {
+          this.progress = progress;
+          if (progress === 1) {
+            this.isReady = true;
+          }
+        }
+      });
+
     //Se expone esta función a Unity
     (window as any).examenFisicoChangeListener = (examenFisico: string) => {
       this.examenFisico = examenFisico;
@@ -39,24 +50,10 @@ export class UnityComponent implements OnInit {
         () => {
           this.imgUrl = finalUrl;
           this.mostrarExamenFisico = true;
+          this.gameInstance.SendMessage('PanelMostrarExamenFisico', 'renderImgDesdeUrl', imgUrl);
         }
       );
     }
-
-    (window as any).quitarImagen = () => {
-      this.mostrarExamenFisico = false;
-    }
-
-    this.gameInstance = loader.instantiate(
-    'gameContainer', 
-    '/assets/Build/Builds.json', {
-    onProgress: (gameInstance: any, progress: number) => {
-        this.progress = progress;
-        if (progress === 1) {
-          this.isReady = true;
-        }
-      }
-    });
   }
 
 }
