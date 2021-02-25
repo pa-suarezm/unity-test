@@ -1,6 +1,6 @@
 <ng-container *ngIf="!isReady">
     <p>Cargando... {{ progress*100 }}%</p>
-    <p>v0.4.0 - Actualizado 25-feb-2021 3:20pm</p>
+    <p>v0.4.1 - Actualizado 25-feb-2021 3:30pm</p>
 </ng-container>
   
 <div #unityEl id="gameContainer" 
@@ -8,5 +8,16 @@
 </div>
 
 <ng-container *ngIf="mostrarImgExamenFisico">
+    <br>
     <img [src]="imgUrl" style="display: block; max-width: 22%; max-height: 22%; margin: auto">
+</ng-container>
+
+<ng-container *ngIf="mostrarVideoExamenFisico">
+    <br>
+    <!--TO DO video-->
+</ng-container>
+
+<ng-container *ngIf="mostrarAudioExamenFisico">
+    <br>
+    <!--TO DO audio-->
 </ng-container>
