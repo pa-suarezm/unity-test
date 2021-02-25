@@ -37,35 +37,30 @@ export class UnityComponent implements OnInit {
         }
       });
 
-    //Se expone esta función a Unity
-    (window as any).examenFisicoChangeListener = (examenFisico: string) => {
-      this.examenFisico = examenFisico;
-    }
-
-    //Se expone esta función a Unity
-    (window as any).setFirebaseImgURL = (imgUrl: string) => {
+    //Se exponen estas funciones a Unity
+    (window as any).setImg = (imgUrl: string) => {
       var finalUrl;
-
-      this.mostrarImgExamenFisico = false;
-      this.mostrarVideoExamenFisico = false;
-      this.mostrarAudioExamenFisico = false;
       
       this.afStorage.ref(imgUrl).getDownloadURL()
       .subscribe(
         downloadUrl => finalUrl = downloadUrl,
         err => console.log('Observer got an error: ' + err),
         () => {
-          //this.imgUrl = finalUrl;
+          this.imgUrl = finalUrl;
           this.mostrarImgExamenFisico = true;
 
           this.examenFisico = finalUrl;
 
           //Llama a la funcion de Unity para renderizar la imagen en el simulador
-          this.gameInstance.SendMessage('Panel_audiovisuales', 'renderImgDesdeUrl', finalUrl);
-
-          this.imgUrl = finalUrl;
+          //this.gameInstance.SendMessage('Panel_audiovisuales', 'renderImgDesdeUrl', finalUrl);
         }
       );
+    }
+
+    (window as any).removeAudiovisuales = () => {
+      this.mostrarImgExamenFisico = false;
+      this.mostrarVideoExamenFisico = false;
+      this.mostrarAudioExamenFisico = false;
     }
   }
 
