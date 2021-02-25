@@ -14,7 +14,7 @@ export class UnityComponent implements OnInit {
   progress = 0;
   isReady = false;
 
-  mostrarExamenFisico = false;
+  mostrarImgExamenFisico = false;
   examenFisico = "";
   imgUrl = "";
 
@@ -42,15 +42,19 @@ export class UnityComponent implements OnInit {
     //Se expone esta función a Unity
     (window as any).setFirebaseImgURL = (imgUrl: string) => {
       var finalUrl;
-      this.mostrarExamenFisico = false;
+      this.mostrarImgExamenFisico = false;
       this.afStorage.ref(imgUrl).getDownloadURL()
       .subscribe(
         downloadUrl => finalUrl = downloadUrl,
         err => console.log('Observer got an error: ' + err),
         () => {
-          this.imgUrl = finalUrl;
-          this.mostrarExamenFisico = true;
-          this.gameInstance.SendMessage('Panel_audiovisuales', 'renderImgDesdeUrl', this.imgUrl);
+          //this.imgUrl = finalUrl;
+          this.mostrarImgExamenFisico = true;
+
+          this.examenFisico = finalUrl;
+
+          //Llama a la funcion de Unity para renderizar la imagen en el simulador
+          this.gameInstance.SendMessage('Panel_audiovisuales', 'renderImgDesdeUrl', finalUrl);
         }
       );
     }
