@@ -1,10 +1,10 @@
 <ng-container *ngIf="!isReady">
     <p>Cargando... {{ progress*100 }}%</p>
-    <p>v0.5.8 - Actualizado 01-mar-2021 2:55pm</p>
+    <p>v0.5.9 - Actualizado 01-mar-2021 3:05pm</p>
 </ng-container>
   
 <div #unityEl id="gameContainer" 
-      style="display: block; max-width: 75%; max-height: 75%; margin: auto">
+      style="display: block; max-width: 75%; max-height: 75%; margin: auto;">
 </div>
 
 <ng-template #contentImg let-modal>
@@ -15,7 +15,7 @@
       </button>
     </div>
     <div class="modal-body">
-        <img [src]="imgUrl" style="display: block; max-width: 50%; max-height: 50%; min-width: 40%; min-height: 40%; margin: auto">
+        <img [src]="imgUrl" style="display: block; margin: auto">
     </div>
     <!--Footer innecesario
     <div class="modal-footer">
@@ -31,7 +31,7 @@
       </button>
     </div>
     <div class="modal-body">
-        <audio [src]="audioUrl" controls autoplay muted>
+        <audio style="display: block; margin: auto;" [src]="audioUrl" controls autoplay muted>
             Su navegador no puede reproducir este audio. Por favor use Google Chrome para una mejor experiencia.
         </audio>
     </div>
