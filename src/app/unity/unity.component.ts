@@ -17,9 +17,13 @@ export class UnityComponent implements OnInit {
 
   examenFisico = "";
   imgUrl = "";
+  audioUrl = "";
 
   @ViewChild('contentImg')
   private contentImg: TemplateRef<any>;
+
+  @ViewChild('contentAudio')
+  private contentAudio: TemplateRef<any>;
 
   constructor(private afStorage: AngularFireStorage, private modalService: NgbModal) { }
 
@@ -47,8 +51,27 @@ export class UnityComponent implements OnInit {
         () => {
           //Cuando se mande la notificación de completado
           this.examenFisico = title;
-          
+
           this.modalService.open(this.contentImg, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+            console.log(`Closed with: ${result}`);
+          }, (reason) => {
+            console.log(`Dismissed ${reason}`);
+          });
+        }
+      );
+    }
+
+    (window as any).lanzarModalConAudio = (audioUrl: string, title: string) => {
+
+      this.afStorage.ref(audioUrl).getDownloadURL()
+      .subscribe(
+        downloadUrl => this.audioUrl = downloadUrl,
+        err => console.log('Observer got an error: ' + err),
+        () => {
+          //Cuando se mande la notificación de completado
+          this.examenFisico = title;
+
+          this.modalService.open(this.contentAudio, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
             console.log(`Closed with: ${result}`);
           }, (reason) => {
             console.log(`Dismissed ${reason}`);

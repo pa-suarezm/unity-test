@@ -1,6 +1,6 @@
 <ng-container *ngIf="!isReady">
     <p>Cargando... {{ progress*100 }}%</p>
-    <p>v0.5.7 - Actualizado 01-mar-2021 2:30pm</p>
+    <p>v0.5.8 - Actualizado 01-mar-2021 2:55pm</p>
 </ng-container>
   
 <div #unityEl id="gameContainer" 
@@ -16,6 +16,24 @@
     </div>
     <div class="modal-body">
         <img [src]="imgUrl" style="display: block; max-width: 50%; max-height: 50%; min-height: 40%; margin: auto">
+    </div>
+    <!--Footer innecesario
+    <div class="modal-footer">
+    </div>
+    -->
+</ng-template>
+
+<ng-template #contentAudio let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Examen físico: {{ examenFisico }}</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        <audio [src]="audioUrl" controls autoplay muted>
+            Su navegador no puede reproducir este audio. Por favor use Google Chrome para una mejor experiencia.
+        </audio>
     </div>
     <!--Footer innecesario
     <div class="modal-footer">
