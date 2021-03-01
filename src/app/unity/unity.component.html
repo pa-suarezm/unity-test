@@ -1,6 +1,6 @@
 <ng-container *ngIf="!isReady">
     <p>Cargando... {{ progress*100 }}%</p>
-    <p>v0.5.9 - Actualizado 01-mar-2021 3:05pm</p>
+    <p>v0.5.9 - Actualizado 01-mar-2021 3:10pm</p>
 </ng-container>
   
 <div #unityEl id="gameContainer" 
@@ -15,7 +15,7 @@
       </button>
     </div>
     <div class="modal-body">
-        <img [src]="imgUrl" style="display: block; margin: auto">
+        <img [src]="imgUrl" style="display: block; max-width: 75%; max-height: 75%; margin: auto">
     </div>
     <!--Footer innecesario
     <div class="modal-footer">
