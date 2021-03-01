@@ -1,23 +1,22 @@
 <ng-container *ngIf="!isReady">
     <p>Cargando... {{ progress*100 }}%</p>
-    <p>v0.5.3 - Actualizado 28-feb-2021 10:00pm</p>
+    <p>v0.5.4 - Actualizado 01-mar-2021 1:20pm</p>
 </ng-container>
   
 <div #unityEl id="gameContainer" 
       style="display: block; max-width: 75%; max-height: 75%; margin: auto">
 </div>
 
-<ng-container *ngIf="mostrarImgExamenFisico">
-    <br>
-    <img [src]="imgUrl" style="display: block; max-width: 22%; max-height: 22%; margin: auto">
-</ng-container>
-
-<ng-container *ngIf="mostrarVideoExamenFisico">
-    <br>
-    <!--TO DO video-->
-</ng-container>
-
-<ng-container *ngIf="mostrarAudioExamenFisico">
-    <br>
-    <!--TO DO audio-->
-</ng-container>
+<ng-template #contentImg let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">{{ examenFisico }}</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        <img [src]="imgUrl" style="display: block; max-width: 22%; max-height: 22%; margin: auto">
+    </div>
+    <div class="modal-footer">
+    </div>
+  </ng-template>

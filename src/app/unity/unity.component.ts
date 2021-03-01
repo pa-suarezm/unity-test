@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { AppComponent } from '../app.component';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { Observable } from 'rxjs';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'unity',
@@ -14,14 +15,13 @@ export class UnityComponent implements OnInit {
   progress = 0;
   isReady = false;
 
-  mostrarImgExamenFisico = false;
-  mostrarVideoExamenFisico = false;
-  mostrarAudioExamenFisico = false;
-
   examenFisico = "";
   imgUrl = "";
 
-  constructor(private afStorage: AngularFireStorage) { }
+  @ViewChild('contentImg')
+  private contentImg: TemplateRef<any>;
+
+  constructor(private afStorage: AngularFireStorage, private modalService: NgbModal) { }
 
   ngOnInit(): void {
     const loader = (window as any).UnityLoader;
@@ -38,29 +38,23 @@ export class UnityComponent implements OnInit {
       });
 
     //Se exponen estas funciones a Unity
-    (window as any).setImg = (imgUrl: string) => {
-      var finalUrl;
-      
+    (window as any).lanzarModalConImg = (imgUrl: string, title: string) => {
+
       this.afStorage.ref(imgUrl).getDownloadURL()
       .subscribe(
-        downloadUrl => finalUrl = downloadUrl,
+        downloadUrl => this.imgUrl = downloadUrl,
         err => console.log('Observer got an error: ' + err),
         () => {
-          this.imgUrl = finalUrl;
-          this.mostrarImgExamenFisico = true;
-
-          this.examenFisico = finalUrl;
-
-          //Llama a la funcion de Unity para renderizar la imagen en el simulador
-          //this.gameInstance.SendMessage('Panel_audiovisuales', 'renderImgDesdeUrl', finalUrl);
+          //Cuando se mande la notificación de completado
+          this.examenFisico = title;
+          
+          this.modalService.open(this.contentImg, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+            console.log(`Closed with: ${result}`);
+          }, (reason) => {
+            console.log(`Dismissed ${reason}`);
+          });
         }
       );
-    }
-
-    (window as any).removeAudiovisuales = () => {
-      this.mostrarImgExamenFisico = false;
-      this.mostrarVideoExamenFisico = false;
-      this.mostrarAudioExamenFisico = false;
     }
   }
 
