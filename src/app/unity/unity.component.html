@@ -1,6 +1,6 @@
 <ng-container *ngIf="!isReady">
     <p>Cargando... {{ progress*100 }}%</p>
-    <p>v0.5.9 - Actualizado 01-mar-2021 3:10pm</p>
+    <p>v0.5.10 - Actualizado 01-mar-2021 7:15pm</p>
 </ng-container>
   
 <div #unityEl id="gameContainer" 
@@ -39,4 +39,29 @@
     <div class="modal-footer">
     </div>
     -->
+</ng-template>
+
+<ng-template #contentLabs let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Ayudas diagnósticas ({{ labActual+1 }} de {{ labsTotales }})</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        <h5>{{ tituloLab }}</h5>
+
+        <ng-container *ngIf="labText">
+            <p>Resultado: {{ valorLab }}</p>
+        </ng-container>
+
+        <ng-container *ngIf="labImg">
+            <img [src]="urlImgLab" style="display: block; max-width: 75%; max-height: 75%; margin: auto">
+        </ng-container>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="anteriorLab()">Anterior</button>
+        <button type="button" class="btn btn-outline-dark" (click)="siguienteLab()">Siguiente</button>
+    </div>
 </ng-template>
