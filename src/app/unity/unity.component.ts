@@ -175,6 +175,10 @@ export class UnityComponent implements OnInit {
       this.labActual = 0;
       this.labsTotales = 0;
 
+      this.titleLab = "";
+      this.valorLab = "";
+      this.pathLab = "";
+      this.urlImgLab = "";
     }
   }
 
