@@ -158,6 +158,11 @@ export class UnityComponent implements OnInit {
 
       this.labsTotales++;
 
+      console.log('------------------------------------------')
+      console.log(title);
+      console.log(valor);
+      console.log(path);
+
       this.titlesLab.push(title);
       this.valoresLab.push(valor);
       this.pathsLab.push(path);
