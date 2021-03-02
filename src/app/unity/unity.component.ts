@@ -13,6 +13,7 @@ export class UnityComponent implements OnInit {
 
   gameInstance: any;
   progress = 0;
+  percentage = 0;
   isReady = false;
 
   //Examen físico
@@ -98,6 +99,7 @@ export class UnityComponent implements OnInit {
       '/assets/Build/Builds.json', {
       onProgress: (gameInstance: any, progress: number) => {
           this.progress = Math.round(progress);
+          this.percentage = Math.round(progress*100)
           if (progress === 1) {
             this.isReady = true;
           }
