@@ -138,8 +138,8 @@ export class UnityComponent implements OnInit {
 
           this.modalService.open(this.contentAudio, {ariaLabelledBy: 'modal-basic-title'}).result
           .then(
-            (result) => console.log(`Closed with: ${result}`), 
-            (reason) => console.log(`Dismissed ${reason}`)
+            (result) => {}, 
+            (reason) => {}
           );
         }
       );
@@ -149,8 +149,8 @@ export class UnityComponent implements OnInit {
 
       this.modalService.open(this.contentLabs, {ariaLabelledBy: 'modal-basic-title'}).result
       .then(
-        (result) => console.log(`Closed with: ${result}`), 
-        (reason) => console.log(`Dismissed ${reason}`)
+        (result) => {}, 
+        (reason) => {}
       );
 
       this.mostrarLab(0);
@@ -159,11 +159,6 @@ export class UnityComponent implements OnInit {
     (window as any).agregarLab = (title: string, valor: string, path: string) => {
 
       this.labsTotales++;
-
-      console.log('------------------------------------------')
-      console.log(title);
-      console.log(valor);
-      console.log(path);
 
       this.titlesLab.push(title);
       this.valoresLab.push(valor);
