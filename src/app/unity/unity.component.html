@@ -1,6 +1,6 @@
 <ng-container *ngIf="!isReady">
     <p>Cargando... {{ percentage }}%</p>
-    <p>v0.5.13 - Actualizado 02-mar-2021 5:25pm</p>
+    <p>v0.5.14 - Actualizado 02-mar-2021 7:40pm</p>
 </ng-container>
   
 <div #unityEl id="gameContainer" 
@@ -17,10 +17,6 @@
     <div class="modal-body">
         <img [src]="imgUrl" style="display: block; max-width: 75%; max-height: 75%; margin: auto">
     </div>
-    <!--Footer innecesario
-    <div class="modal-footer">
-    </div>
-    -->
 </ng-template>
 
 <ng-template #contentAudio let-modal>
@@ -35,10 +31,6 @@
             Su navegador no puede reproducir este audio. Por favor use Google Chrome para una mejor experiencia.
         </audio>
     </div>
-    <!--Footer innecesario
-    <div class="modal-footer">
-    </div>
-    -->
 </ng-template>
 
 <ng-template #contentLabs let-modal>
