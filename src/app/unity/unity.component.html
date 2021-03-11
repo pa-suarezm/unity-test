@@ -1,13 +1,13 @@
 <ng-container *ngIf="!isReady">
     <p>Cargando... {{ percentage }}%</p>
-    <p>Actualizado 10-mar-2021 9:20pm</p>
+    <p>Actualizado 11-mar-2021 6:25pm</p>
 </ng-container>
   
 <div #unityEl id="gameContainer" 
       style="display: block; max-width: 75%; max-height: 75%; margin: auto;">
 </div>
 
-<p>v0.5.21</p>
+<p>v0.5.22</p>
 
 <ng-template #contentImg let-modal>
     <div class="modal-header">
@@ -46,7 +46,7 @@
         <h5>{{ titleLab }}</h5>
 
         <ng-container *ngIf="labText">
-            <p>Resultado: {{ valorLab }}</p>
+            <p><pre>Resultado: {{ valorLab }}</pre></p>
         </ng-container>
 
         <ng-container *ngIf="labImg">
